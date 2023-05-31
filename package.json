@@ -1,0 +1,11 @@
+{
+  "name": "@hexlet/code",
+  "version": "1.0.0",
+  "description": "[![Actions Status](https://github.com/vaLERiyA-pvy/frontend-project-44/workflows/hexlet-check/badge.svg)](https://github.com/vaLERiyA-pvy/frontend-project-44/actions)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Agafonova VY",
+  "license": "ISC"
+}
