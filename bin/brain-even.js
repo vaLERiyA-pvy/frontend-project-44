@@ -1,4 +1,4 @@
 #!/usr/bin/env node
-import ful from '../src/even.js';
+import { func } from '../src/even.js';
 
-console.log(ful);
+console.log(func);
