@@ -1,4 +1,6 @@
 #!/usr/bin/env node
-import { func } from '../src/even.js';
+import isEven from '../src/even.js';
 
-console.log(func);
+console.log('Answer "yes" if the number is even, otherwise answer "no"');
+
+console.log(isEven);

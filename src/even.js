@@ -1,41 +1,27 @@
 import readlineSync from 'readline-sync';
+import userName from './cli.js';
 
-export const userName = readlineSync.question('Welcome to the Brain Games!\nMay I have your name? ');
 console.log(`Hello, ${userName}!`);
 
-export function getRandomInRange(min, max) {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-}
+const isEven = () => {
+  for (let i = 1; i <= 3; i += 1) {
+    const ramdomNum = Math.floor(Math.random() * (100 - 1 + 1)) + 1;
+    const question = readlineSync.question(`Question: ${ramdomNum}`);
+    const isYes = (type) => type === 'yes';
+    const isNo = (type) => type === 'no';
+    const ans = readlineSync.question('Your answer: ');
+    const isAnsNo = `${ans}${isNo}`;
+    const isAnsYes = `${ans}${isYes}`;
 
-console.log('Answer "yes" if the number is even, otherwise answer "no"');
-
-const question = readlineSync.question(`Question: ${getRandomInRange(1, 99)}`);
-
-const answerNum = readlineSync.question('Your answer: ');
-export const answerYes = `${answerNum}yes`;
-export const answerNo = `${answerNum}no`;
-
-export function answer() {
-  if (question % 2 === 0) {
-    return 'yes';
-  }
-  return 'no';
-}
-
-export function func() {
-  let phrase;
-  if (question % 2 === 0 && answerYes) {
-    phrase = 'Correct!';
-  } else if (question % 2 === 0 && answerNo) {
-    phrase = "'yes' is wrong answer ;(. Correct answer was 'no'.\nLet's try again, Bill!";
-  } else {
-    phrase = "'yes' is wrong answer ;(. Correct answer was 'no'.\nLet's try again, Bill!";
+    if ((ramdomNum % 2 === 0 && ans === isAnsYes) || (ramdomNum % 2 !== 0 && ans === isAnsNo)) {
+      console.log('Correct!');
+    } else {
+      console.log("'yes' is wrong answer ;(. Correct answer was 'no'.\nLet's try again, Bill!");
+    }
+    console.log(question);
   }
 
-  let i = answerYes;
-  while (i >= 3) {
-    console.log(i);
-    i += 1;
-  }
   console.log(`Congratulations, ${userName}!`);
-}
+};
+
+export default isEven;
