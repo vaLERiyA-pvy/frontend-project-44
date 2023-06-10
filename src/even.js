@@ -5,22 +5,24 @@ console.log(`Hello, ${userName}!`);
 
 const isEven = () => {
   for (let i = 1; i <= 3; i += 1) {
-    const ramdomNum = Math.floor(Math.random() * (100 - 1 + 1)) + 1;
-    const question = readlineSync.question(`Question: ${ramdomNum}`);
-    const isYes = (type) => type === 'yes';
-    const isNo = (type) => type === 'no';
-    const ans = readlineSync.question('Your answer: ');
-    const isAnsNo = `${ans}${isNo}`;
-    const isAnsYes = `${ans}${isYes}`;
+    const ramdNum = Math.floor(Math.random() * (100 - 1 + 1)) + 1;
+    console.log(`Question: ${ramdNum}`);
+    const ramdNumYes = (ramdNum % 2 === 0);
+    const ramdNumNo = (ramdNum % 2 !== 0);
 
-    if ((ramdomNum % 2 === 0 && ans === isAnsYes) || (ramdomNum % 2 !== 0 && ans === isAnsNo)) {
+    const ansNum = readlineSync.question('Your answer: ');
+    const isAnsYes = ansNum === 'yes';
+    const isAnsNo = ansNum === 'no';
+
+    if (ramdNumYes && isAnsYes) {
+      console.log('Correct!');
+    } else if (ramdNumNo && isAnsNo) {
       console.log('Correct!');
     } else {
-      console.log("'yes' is wrong answer ;(. Correct answer was 'no'.\nLet's try again, Bill!");
+      console.log(`'yes' is wrong answer ;(. Correct answer was 'no'.\nLet's try again, ${userName}!`);
+      break;
     }
-    console.log(question);
   }
-
   console.log(`Congratulations, ${userName}!`);
 };
 
