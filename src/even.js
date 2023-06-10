@@ -19,11 +19,10 @@ const isEven = () => {
     } else if (ramdNumNo && isAnsNo) {
       console.log('Correct!');
     } else {
-      console.log(`'yes' is wrong answer ;(. Correct answer was 'no'.\nLet's try again, ${userName}!`);
-      break;
+      return console.log(`'yes' is wrong answer ;(. Correct answer was 'no'.\nLet's try again, ${userName}!`);
     }
   }
-  console.log(`Congratulations, ${userName}!`);
+  return console.log(`Congratulations, ${userName}!`);
 };
 
 export default isEven;
