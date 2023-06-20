@@ -1,9 +1,8 @@
 import readlineSync from 'readline-sync';
-import userName from './cli.js';
 
-console.log(`Hello, ${userName}!`);
+export const userName = readlineSync.question('Welcome to the Brain Games!\nMay I have your name? ');
 
-const isEven = () => {
+export const isEven = () => {
   for (let i = 1; i <= 3; i += 1) {
     const ramdNum = Math.floor(Math.random() * (100 - 1 + 1)) + 1;
     console.log(`Question: ${ramdNum}`);
@@ -24,5 +23,3 @@ const isEven = () => {
   }
   return console.log(`Congratulations, ${userName}!`);
 };
-
-export default isEven;
