@@ -1,6 +1,9 @@
 #!/usr/bin/env node
-import isEven from '../src/games/even.js';
+import game from '../src/index.js';
+import evenGame from '../src/games/even.js';
+import { expression } from '../src/expression.js';
 
-console.log('Answer "yes" if the number is even, otherwise answer "no"');
+const evenStart = () => game(expression.descriptionEven, evenGame);
+// выдает фразу 'Answer "yes" if... "no".' и запускает игру
 
-isEven();
+evenStart();

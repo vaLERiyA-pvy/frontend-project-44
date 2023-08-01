@@ -1,25 +1,31 @@
 import readlineSync from 'readline-sync';
+import {
+  expression,
+  displayGreeting,
+  displayQuestion,
+  displayWrongAnswer,
+  displayCongratulation,
+} from './expression.js';
 
-export const userName = readlineSync.question('Welcome to the Brain Games!\nMay I have your name? ');
-
-export const isEven = () => {
+const game = (description, getRound) => {
+  console.log(expression.welcome); // приветствие в игре
+  const userName = readlineSync.question(expression.whatName); // спрашиваем как зовут
+  console.log(displayGreeting(userName)); // приветствуем игрока
+  console.log(description); // условие игры
   for (let i = 1; i <= 3; i += 1) {
-    const ramdNum = Math.floor(Math.random() * (100 - 1 + 1)) + 1;
-    console.log(`Question: ${ramdNum}`);
-    const ramdNumYes = (ramdNum % 2 === 0);
-    const ramdNumNo = (ramdNum % 2 !== 0);
-
-    const ansNum = readlineSync.question('Your answer: ');
-    const isAnsYes = ansNum === 'yes';
-    const isAnsNo = ansNum === 'no';
-
-    if (ramdNumYes && isAnsYes) {
-      console.log('Correct!');
-    } else if (ramdNumNo && isAnsNo) {
-      console.log('Correct!');
+    const [question, correctAnswer] = getRound();
+    console.log(displayQuestion(question)); // вопрос для ответа
+    const userAnswer = readlineSync.question(expression.answer);
+    // константа для ввода ответа играком
+    if (userAnswer === correctAnswer) { // если введенное значение = уловию из игры
+      console.log(expression.corrAnswer); // ввыводить браво!
     } else {
-      return console.log(`'yes' is wrong answer ;(. Correct answer was 'no'.\nLet's try again, ${userName}!`);
+      console.log(displayWrongAnswer(userAnswer, correctAnswer, userName));
+      // в противном случае - выводит фразу с правильным ответом и предложением попробовать снова
+      return;
     }
   }
-  return console.log(`Congratulations, ${userName}!`);
+  console.log(displayCongratulation(userName));
 };
+
+export default game;

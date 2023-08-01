@@ -1,28 +1,14 @@
-import readlineSync from 'readline-sync';
-import userName from './cli.js';
+import { getRandomNum } from './cli.js';
+import { expression } from '../expression.js';
 
-console.log(`Hello, ${userName}!`);
+const isEven = (num) => num % 2 === 0; // определяет четное число
 
-const isEven = () => {
-  for (let i = 1; i <= 3; i += 1) {
-    const ramdNum = Math.floor(Math.random() * (100 - 1 + 1)) + 1;
-    console.log(`Question: ${ramdNum}`);
-    const ramdNumYes = (ramdNum % 2 === 0);
-    const ramdNumNo = (ramdNum % 2 !== 0);
+const evenGame = () => {
+  const question = getRandomNum(1, 99); // выводит рандомное число
+  const correctAnswer = isEven(question) ? expression.yes : expression.no;
+  // условие: если четное - да, нечетное - нет
 
-    const ansNum = readlineSync.question('Your answer: ');
-    const isAnsYes = ansNum === 'yes';
-    const isAnsNo = ansNum === 'no';
-
-    if (ramdNumYes && isAnsYes) {
-      console.log('Correct!');
-    } else if (ramdNumNo && isAnsNo) {
-      console.log('Correct!');
-    } else {
-      return console.log(`'${ansNum}' is wrong answer ;(. Correct answer was '${isAnsYes}'.\nLet's try again, ${userName}!`);
-    }
-  }
-  return console.log(`Congratulations, ${userName}!`);
+  return [question, correctAnswer]; // возвращает рандомное число и ответ игрока
 };
 
-export default isEven;
+export default evenGame;
