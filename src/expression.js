@@ -7,6 +7,7 @@ export const expression = {
   no: 'no',
   descriptionCalc: 'What is the result of the expression?',
   descriptionEven: 'Answer "yes" if the number is even, otherwise answer "no".',
+  descriptionGcd: 'Find the greatest common divisor of given numbers.',
 };
 
 export const displayGreeting = (userName) => `Hello, ${userName}!`;
