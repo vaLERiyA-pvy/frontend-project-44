@@ -9,6 +9,7 @@ export const expression = {
   descriptionEven: 'Answer "yes" if the number is even, otherwise answer "no".',
   descriptionGcd: 'Find the greatest common divisor of given numbers.',
   descriptionProgr: 'What number is missing in the progression?',
+  descriptionPrime: 'Answer "yes" if given number is prime. Otherwise answer "no".',
 };
 
 export const displayGreeting = (userName) => `Hello, ${userName}!`;
