@@ -3,7 +3,7 @@ import { getRandomNum } from './cli.js';
 const progressionGame = () => {
   const progressionNew = [];
   const randomNum = getRandomNum(1, 99);
-  const stepNum = getRandomNum(2, 6);
+  const stepNum = getRandomNum(2, 5);
   const step = stepNum * 10;
 
   for (let i = 0; i < step; i += stepNum) {
