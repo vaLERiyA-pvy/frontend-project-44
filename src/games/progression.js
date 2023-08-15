@@ -14,7 +14,7 @@ const progressionGame = () => {
   const progressionFin = progressionNew;
   const correctAnswer = progressionFin[hiddenElement];
   progressionFin[hiddenElement] = '..';
-  const question = progressionNew.join(',').toString();
+  const question = progressionNew.join(' ').toString();
 
   return [question, correctAnswer.toString()];
 };
