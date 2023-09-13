@@ -1,5 +1,7 @@
-import { getRandomNum } from './cli.js';
-import { expression } from '../expression.js';
+import game from '../index.js';
+import getRandomNum from '../utils.js';
+
+const gameDescription = 'Answer "yes" if given number is prime. Otherwise answer "no".';
 
 const isPrime = (question) => {
   if (question < 2) {
@@ -18,9 +20,11 @@ const isPrime = (question) => {
 
 const primeGame = () => {
   const question = getRandomNum(1, 99);
-  const correctAnswer = isPrime(question) ? expression.yes : expression.no;
+  const correctAnswer = isPrime(question) ? 'yes' : 'no';
 
   return [question, correctAnswer];
 };
 
-export default primeGame;
+const primeStart = () => game(gameDescription, primeGame);
+
+export default primeStart;

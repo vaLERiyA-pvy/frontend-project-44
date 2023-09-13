@@ -1,4 +1,25 @@
-import { getRandomNum } from './cli.js';
+import game from '../index.js';
+import getRandomNum from '../utils.js';
+
+const gameDescription = 'What is the result of the expression?';
+
+const calculateAnswer = (firstValue, secondValue, operator) => {
+  let result = null;
+
+  switch (operator) {
+    case '+':
+      result = firstValue + secondValue;
+      break;
+    case '-':
+      result = firstValue - secondValue;
+      break;
+    case '*':
+      result = firstValue * secondValue;
+      break;
+    default:
+  }
+  return result;
+};
 
 const calcGame = () => {
   const firstOper = getRandomNum(1, 10);
@@ -6,25 +27,11 @@ const calcGame = () => {
   const arrOper = ['+', '-', '*'];
   const randOper = Math.floor(Math.random() * arrOper.length);
   const operator = arrOper[randOper];
-  let correctAnswer = 0;
-
-  switch (operator) {
-    case '+':
-      correctAnswer = firstOper + secondOper;
-      break;
-    case '-':
-      correctAnswer = firstOper - secondOper;
-      break;
-    case '*':
-      correctAnswer = firstOper * secondOper;
-      break;
-    default:
-      correctAnswer = 1;
-  }
-
   const question = `${firstOper} ${operator} ${secondOper}`;
-
-  return [question, correctAnswer.toString()];
+  const correctAnswer = calculateAnswer(firstOper, secondOper, operator).toString();
+  return [question, correctAnswer];
 };
 
-export default calcGame;
+const calcStart = () => game(gameDescription, calcGame);
+
+export default calcStart;

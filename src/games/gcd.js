@@ -1,19 +1,26 @@
-import { getRandomNum } from './cli.js';
+import game from '../index.js';
+import getRandomNum from '../utils.js';
 
-const gcdGame = () => {
-  let firstOper = getRandomNum(1, 99);
-  let secondOper = getRandomNum(2, 99);
-  let division = firstOper % secondOper;
+const gameDescription = 'Find the greatest common divisor of given numbers.';
 
-  while (division !== 0) {
-    firstOper = secondOper;
-    secondOper = division;
-    division = firstOper % secondOper;
+const computeGcd = (firstValue, secondValue) => {
+  const division = firstValue % secondValue;
+  if (!secondValue) {
+    return firstValue;
   }
-  const correctAnswer = secondOper;
 
-  const question = `${firstOper} ${secondOper}`;
-  return [question, correctAnswer.toString()];
+  return computeGcd(secondValue, division);
 };
 
-export default gcdGame;
+const gcdGame = () => {
+  const firstOper = getRandomNum(1, 99);
+  const secondOper = getRandomNum(2, 99);
+
+  const correctAnswer = computeGcd(firstOper, secondOper).toString();
+  const question = `${firstOper} ${secondOper}`;
+  return [question, correctAnswer];
+};
+
+const gcdStart = () => game(gameDescription, gcdGame);
+
+export default gcdStart;

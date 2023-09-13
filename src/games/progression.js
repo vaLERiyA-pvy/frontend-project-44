@@ -1,22 +1,31 @@
-import { getRandomNum } from './cli.js';
+import game from '../index.js';
+import getRandomNum from '../utils.js';
 
-const progressionGame = () => {
+const gameDescription = 'What number is missing in the progression?';
+
+const getProgression = (start, step, length) => {
   const progressionNew = [];
-  const randomNum = getRandomNum(1, 99);
-  const stepNum = getRandomNum(2, 5);
-  const step = stepNum * 10;
 
-  for (let i = 0; i < step; i += stepNum) {
-    progressionNew.push(randomNum + i);
+  for (let i = 0; i < length; i += 1) {
+    progressionNew.push(start + i * step);
   }
 
-  const hiddenElement = getRandomNum(1, 9);
-  const progressionFin = progressionNew;
-  const correctAnswer = progressionFin[hiddenElement];
-  progressionFin[hiddenElement] = '..';
-  const question = progressionNew.join(' ').toString();
-
-  return [question, correctAnswer.toString()];
+  return progressionNew;
 };
 
-export default progressionGame;
+const progressionGame = () => {
+  const start = getRandomNum(0, 5);
+  const step = getRandomNum(1, 5);
+  const length = getRandomNum(10, 15);
+  const progressionNew = getProgression(start, step, length);
+  const hiddenNumber = getRandomNum(0, progressionNew.length - 1);
+  const correctAnswer = progressionNew[hiddenNumber].toString();
+  progressionNew[hiddenNumber] = '..';
+  const question = progressionNew.join(' ');
+
+  return [question, correctAnswer];
+};
+
+const progressionStart = () => game(gameDescription, progressionGame);
+
+export default progressionStart;
